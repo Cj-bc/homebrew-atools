@@ -15,6 +15,18 @@ class Atools < Formula
   depends_on "peco" => :optional
   
 
+  def depcheck
+    # 1. check Bash version
+    # 2. check all dependencies
+    #   2-1. output error message
+    odie "you need bash 4.0 or higher" unless `echo $BASH_VERSINFO`.start_with?("4")
+    dependencies = ["w3m","curl","xmllint","jq"]
+    for dep in dependencies do
+      odie "you need #{dep}. please install." unless system('type #{dep}')
+    end
+
+  end
+
   def install
     system "./install.sh", prefix
     bash_completion.install "lib/atools.completion"
