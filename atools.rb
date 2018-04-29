@@ -28,7 +28,13 @@ class Atools < Formula
   end
 
   def install
-    system "./install.sh", prefix
+    # 1. check dependencies
+    # 2. install all scripts in bin/
+    depcheck
+    for executable in Dir.entries('bin') do
+      next if executable.start_with?('.')
+      bin.install executable
+    end
     bash_completion.install "lib/atools.completion"
   end
 
