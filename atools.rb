@@ -17,7 +17,7 @@ class Atools < Formula
 
   def install
     system "./install.sh", prefix
-    (prefix/"etc"/"bash-completion.d").install "lib/atools.completion"
+    bash_completion.install "lib/atools.completion"
   end
 
   def caveats
