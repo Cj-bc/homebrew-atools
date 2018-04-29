@@ -38,7 +38,12 @@ class Atools < Formula
     bash_completion.install "lib/atools.completion"
   end
 
-  def caveats
-    "ATools"
+  def caveats;<<~EOT
+    To activate bash-completion for atools, you need to do:
+      restart your terminal
+    or
+      $ source ~/.bash_profile
+    EOT
   end
+
 end
