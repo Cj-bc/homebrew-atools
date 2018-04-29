@@ -20,9 +20,10 @@ class Atools < Formula
     # 2. check all dependencies
     #   2-1. output error message
     odie "you need bash 4.0 or higher" unless `bash --version`.split(" ")[3][0].to_i >= 4
-    dependencies = ["w3m","curl","xmllint","jq"]
+    dependencies = ["w3m", "curl", "xmllint", "jq"]
+    ENV.store('PATH', ENV.fetch('PATH').to_s + ":" + prefix + "/bin/")
     for dep in dependencies do
-      odie "you need #{dep}. please install." unless system('type #{dep}')
+      odie "you need #{dep}. please install." unless system "type", dep
     end
 
   end
